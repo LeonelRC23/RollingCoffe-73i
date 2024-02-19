@@ -1,20 +1,25 @@
-import { Button, Table } from "react-bootstrap";
-import ItemProducto from "./producto/ItemProducto";
-
+import { Button, Table } from 'react-bootstrap';
+import ItemProducto from './producto/ItemProducto';
+import { useEffect, useState } from 'react';
+import { leerProductosAPI } from '../../helpers/queris';
 
 const Administrador = () => {
+  const [productos, setProductos] = useState([]);
+  useEffect(() => {
+    leerProductosAPI();
+  }, []);
   return (
-    <section className="container mainSection">
-      <div className="d-flex justify-content-between align-items-center mt-5">
-        <h1 className="display-4 ">Productos disponibles</h1>
-        <Button className="btn btn-primary" >
-          <i className="bi bi-file-earmark-plus"></i>
+    <section className='container mainSection'>
+      <div className='d-flex justify-content-between align-items-center mt-5'>
+        <h1 className='display-4 '>Productos disponibles</h1>
+        <Button className='btn btn-primary'>
+          <i className='bi bi-file-earmark-plus'></i>
         </Button>
       </div>
       <hr />
       <Table responsive striped bordered hover>
         <thead>
-          <tr className="text-center">
+          <tr className='text-center'>
             <th>Cod</th>
             <th>Producto</th>
             <th>Precio</th>
