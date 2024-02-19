@@ -6,8 +6,12 @@ import { leerProductosAPI } from '../../helpers/queris';
 const Administrador = () => {
   const [productos, setProductos] = useState([]);
   useEffect(() => {
-    leerProductosAPI();
+    consultarAPI();
   }, []);
+  const consultarAPI = async () => {
+    const respuesta = await leerProductosAPI();
+    setProductos(respuesta);
+  };
   return (
     <section className='container mainSection'>
       <div className='d-flex justify-content-between align-items-center mt-5'>
@@ -29,10 +33,9 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-          <ItemProducto></ItemProducto>
-          <ItemProducto></ItemProducto>
-          <ItemProducto></ItemProducto>
-          <ItemProducto></ItemProducto>
+          {productos.map((producto) => (
+            <ItemProducto key={producto.id} producto={producto} />
+          ))}
         </tbody>
       </Table>
     </section>
