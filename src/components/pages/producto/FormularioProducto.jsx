@@ -1,5 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { crearProductoAPI } from '../../../helpers/queris';
 
 const FormularioProducto = () => {
   const {
@@ -9,6 +10,7 @@ const FormularioProducto = () => {
   } = useForm();
   const productoValidado = (producto) => {
     console.log(producto);
+    crearProductoAPI(producto);
   };
   return (
     <section className='container mainSection'>
