@@ -26,6 +26,24 @@
       "categoria": "Infusiones",
       "descripcionBreve": "Cafe riki",
       "descripcionAmplia": "Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico"
+    },
+    {
+      "id": "3f95",
+      "nombreProducto": "Brownie",
+      "precio": "750",
+      "imagen": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "dulce",
+      "descripcionBreve": "Un brownie chiquito",
+      "descripcionAmplia": "Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito Un brownie chiquito"
+    },
+    {
+      "id": "47a9",
+      "nombreProducto": "Cafe cortado",
+      "precio": "850",
+      "imagen": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "Infusiones",
+      "descripcionBreve": "Cafesito chiquito ",
+      "descripcionAmplia": "Cafesito chiquito Cafesito chiquito Cafesito chiquito Cafesito chiquito Cafesito chiquito Cafesito chiquito"
     }
   ]
 }

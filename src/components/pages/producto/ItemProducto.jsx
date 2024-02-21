@@ -3,7 +3,7 @@ const ItemProducto = ({ producto }) => {
   return (
     <tr>
       <td className='text-center'>{producto.id}</td>
-      <td>Café americano</td>
+      <td>{producto.nombreProducto}</td>
       <td className='text-end'>${producto.precio}</td>
       <td className='text-center'>
         <img
