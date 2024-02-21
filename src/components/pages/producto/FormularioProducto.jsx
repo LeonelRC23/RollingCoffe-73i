@@ -67,7 +67,7 @@ const FormularioProducto = () => {
             {...register('imagen', {
               required: 'El producto debe contener una imagen',
               pattern: {
-                value: /https?:\/\/[\w\-\.]+\.\w{2,5}\/?S*/,
+                value: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/,
                 message: 'Ingrese un link valido',
               },
             })}
@@ -102,7 +102,7 @@ const FormularioProducto = () => {
             {...register('descripcionBreve', {
               required: 'Este campo es obligatorio',
               minLength: {
-                value: 1,
+                value: 5,
                 message: 'La descripcion debe tener como minimo un caracter',
               },
               maxLength: {
@@ -128,7 +128,7 @@ const FormularioProducto = () => {
                 message: 'La descripcion debe tener como minimo 50 caracteres',
               },
               maxLength: {
-                value: 150,
+                value: 300,
                 message: 'La descripcion debe tener como maximo 150 caracteres',
               },
             })}
