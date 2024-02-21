@@ -1,80 +1,144 @@
-import { Form, Button } from "react-bootstrap";
-
+import { Form, Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 
 const FormularioProducto = () => {
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const productoValidado = (producto) => {
+    console.log(producto);
+  };
   return (
-    <section className="container mainSection">
-      <h1 className="display-4 mt-5">Nuevo producto</h1>
+    <section className='container mainSection'>
+      <h1 className='display-4 mt-5'>Nuevo producto</h1>
       <hr />
-      <Form className="my-4">
-        <Form.Group className="mb-3" controlId="formNombreProdcuto">
+      <Form className='my-4' onSubmit={handleSubmit(productoValidado)}>
+        <Form.Group className='mb-3' controlId='formNombreProdcuto'>
           <Form.Label>Producto*</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Ej: Cafe"
+            type='text'
+            placeholder='Ej: Cafe'
+            {...register('nombreProducto', {
+              required: 'El nombre del producto es obligatorio',
+              minLength: {
+                value: 2,
+                message:
+                  'El nombre del producto debe tener como minimo 2 caracteres',
+              },
+              maxLength: {
+                value: 20,
+                message:
+                  'El nombre del producto debe tener como maximo 20 caracteres',
+              },
+            })}
           />
-          <Form.Text className="text-danger">
-            prueba de error
+          <Form.Text className='text-danger'>
+            {errors.nombreProducto?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formPrecio">
+        <Form.Group className='mb-3' controlId='formPrecio'>
           <Form.Label>Precio*</Form.Label>
           <Form.Control
-            type="number"
-            placeholder="Ej: 50"
+            type='number'
+            placeholder='Ej: 50'
+            {...register('precio', {
+              required: 'El precio es obligatorio',
+              min: {
+                value: 1,
+                message: 'El producto no puede tener un precio menor a 1',
+              },
+              max: {
+                value: 99999,
+                message: 'El precio no puede tener un precio mayor a 99999',
+              },
+            })}
           />
-          <Form.Text className="text-danger">
-          prueba de error
+          <Form.Text className='text-danger'>
+            {errors.precio?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formImagen">
+        <Form.Group className='mb-3' controlId='formImagen'>
           <Form.Label>Imagen URL*</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
+            type='text'
+            placeholder='Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/'
+            {...register('imagen', {
+              required: 'El producto debe contener una imagen',
+              pattern: {
+                value: /https?:\/\/[\w\-\.]+\.\w{2,5}\/?S*/,
+                message: 'Ingrese un link valido',
+              },
+            })}
           />
-          <Form.Text className="text-danger">
-        prueba de error
+          <Form.Text className='text-danger'>
+            {errors.imagen?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formPrecio">
+        <Form.Group className='mb-3' controlId='formPrecio'>
           <Form.Label>Categoría*</Form.Label>
-          <Form.Select>
-            <option value="">Seleccione una opcion</option>
-            <option value="Infusiones">Infusiones</option>
-            <option value="Batidos">Batidos</option>
-            <option value="dulce">Dulce</option>
-            <option value="salado">Salado</option>
+          <Form.Select
+            {...register('categoria', {
+              required: 'El producto debe pertenecer a una categoria',
+            })}
+          >
+            <option value=''>Seleccione una opcion</option>
+            <option value='Infusiones'>Infusiones</option>
+            <option value='Batidos'>Batidos</option>
+            <option value='dulce'>Dulce</option>
+            <option value='salado'>Salado</option>
           </Form.Select>
-          <Form.Text className="text-danger">
-          prueba de error
+          <Form.Text className='text-danger'>
+            {errors.categoria?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formImagen">
+        <Form.Group className='mb-3' controlId='formImagen'>
           <Form.Label>Descripción breve*</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Ej: Una taza de café suave y aromático."
-            as="textarea"
+            type='text'
+            placeholder='Ej: Una taza de café suave y aromático.'
+            as='textarea'
+            {...register('descripcionBreve', {
+              required: 'Este campo es obligatorio',
+              minLength: {
+                value: 1,
+                message: 'La descripcion debe tener como minimo un caracter',
+              },
+              maxLength: {
+                value: 50,
+                message: 'La descripcion debe tener como maximo 50 caracteres',
+              },
+            })}
           />
-          <Form.Text className="text-danger">
-        prueba de error
+          <Form.Text className='text-danger'>
+            {errors.descripcionBreve?.message}
           </Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formImagen">
+        <Form.Group className='mb-3' controlId='formImagen'>
           <Form.Label>Descripción Amplia*</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Ej: El café americano es una bebida caliente que consiste en un espresso diluido con agua caliente, lo que resulta en una taza de café suave y aromático. Es una opción popular para aquellos que prefieren un café menos intenso que el espresso tradicional. Perfecto para disfrutar en cualquier momento del día."
-            as="textarea"
+            type='text'
+            placeholder='Ej: El café americano es una bebida caliente que consiste en un espresso diluido con agua caliente, lo que resulta en una taza de café suave y aromático. Es una opción popular para aquellos que prefieren un café menos intenso que el espresso tradicional. Perfecto para disfrutar en cualquier momento del día.'
+            as='textarea'
+            {...register('descripcionAmplia', {
+              required: 'Este campo es obligatorio',
+              minLength: {
+                value: 50,
+                message: 'La descripcion debe tener como minimo 50 caracteres',
+              },
+              maxLength: {
+                value: 150,
+                message: 'La descripcion debe tener como maximo 150 caracteres',
+              },
+            })}
           />
-          <Form.Text className="text-danger">
-        prueba de error
+          <Form.Text className='text-danger'>
+            {errors.descripcionAmplia?.message}
           </Form.Text>
         </Form.Group>
-        
-        <Button type="submit" variant='success'>
+
+        <Button type='submit' variant='success'>
           Guardar
         </Button>
       </Form>
