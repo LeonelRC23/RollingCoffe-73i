@@ -11,6 +11,7 @@ const FormularioProducto = ({ editar, titulo }) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
   const { id } = useParams();
   useEffect(() => {
@@ -24,7 +25,8 @@ const FormularioProducto = ({ editar, titulo }) => {
       const respuesta = await obtenerProductoAPI(id);
       if (respuesta.status === 200) {
         const productoEncontrado = await respuesta.json();
-        console.log(productoEncontrado);
+        setValue('nombreProducto', productoEncontrado.nombreProducto);
+        setValue('precio', productoEncontrado.precio);
       }
     } catch (error) {
       console.log(error);
