@@ -1,6 +1,10 @@
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { crearProductoAPI, obtenerProductoAPI } from '../../../helpers/queris';
+import {
+  crearProductoAPI,
+  editarProductoAPI,
+  obtenerProductoAPI,
+} from '../../../helpers/queris';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -14,6 +18,7 @@ const FormularioProducto = ({ editar, titulo }) => {
     setValue,
   } = useForm();
   const { id } = useParams();
+  const navegation = useParams();
   useEffect(() => {
     if (editar) {
       cargarDatosProducto();
@@ -25,8 +30,13 @@ const FormularioProducto = ({ editar, titulo }) => {
       const respuesta = await obtenerProductoAPI(id);
       if (respuesta.status === 200) {
         const productoEncontrado = await respuesta.json();
+        console.log(productoEncontrado);
         setValue('nombreProducto', productoEncontrado.nombreProducto);
         setValue('precio', productoEncontrado.precio);
+        setValue('categoria', productoEncontrado.categoria);
+        setValue('imagen', productoEncontrado.imagen);
+        setValue('descripcionAmplia', productoEncontrado.descripcionAmplia);
+        setValue('descripcionBreve', productoEncontrado.descripcionBreve);
       }
     } catch (error) {
       console.log(error);
@@ -37,6 +47,21 @@ const FormularioProducto = ({ editar, titulo }) => {
     if (editar) {
       //Agregar la logica para editar
       console.log('Aqui debo editar');
+      const respuesta = editarProductoAPI(producto, id);
+      if (respuesta.status === 200) {
+        Swal.fire({
+          title: 'Producto modificado',
+          text: `El producto ${producto.nombreProducto} fue modificado correctamente`,
+          icon: 'success',
+        });
+        navegation(`/administrador`);
+      } else {
+        Swal.fire({
+          title: 'Ocurrio un error',
+          text: `El producto ${producto.nombreProducto} no pudo ser modificado, intente nuevamente`,
+          icon: 'success',
+        });
+      }
     } else {
       const respuesta = await crearProductoAPI(producto);
       if (respuesta.status === 201) {

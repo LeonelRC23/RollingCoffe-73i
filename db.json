@@ -8,6 +8,15 @@
       "categoria": "Infusiones",
       "descripcionBreve": "Cafe riki",
       "descripcionAmplia": "Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico Un cafe bastante rico"
+    },
+    {
+      "id": "acac",
+      "nombreProducto": "Brownie",
+      "precio": "500",
+      "imagen": "https://images.pexels.com/photos/7169617/pexels-photo-7169617.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "dulce",
+      "descripcionBreve": "Un brownie pequeño.",
+      "descripcionAmplia": "Un brownie re peque, sabor a chocolate con detallecitos de crema, hecho con mucha felicidad y amor (mentira)"
     }
   ]
 }
