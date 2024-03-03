@@ -71,3 +71,21 @@ export const borrarProductoAPI = async (id) => {
     console.log(error);
   }
 };
+
+//modificar el login cuando tengamos un backend
+const userAdmin = {
+  mail: 'admin@rollingcoffe.com',
+  password: '123Aa$123',
+};
+
+export const login = (usuario) => {
+  if (
+    usuario.mail === userAdmin.mail &&
+    usuario.password === userAdmin.password
+  ) {
+    sessionStorage.setItem('usuarioRollingCoffe', JSON.stringify(usuario.mail));
+    return true;
+  } else {
+    return false;
+  }
+};

@@ -1,5 +1,7 @@
 import { Form, Button, Container, Card } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { login } from '../../../helpers/queris';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const {
@@ -8,7 +10,21 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (usuario) => {};
+  const onSubmit = (usuario) => {
+    if (login(usuario)) {
+      Swal.fire({
+        title: 'Usuario logueado',
+        text: `Bienvenido ${usuario.mail} `,
+        icon: 'success',
+      });
+    } else {
+      Swal.fire({
+        title: 'Ocurrio un error',
+        text: `Nombre de usuario o password incorrecto`,
+        icon: 'success',
+      });
+    }
+  };
 
   return (
     <Container className='mainSection'>
@@ -21,7 +37,7 @@ const Login = () => {
               <Form.Control
                 type='text'
                 placeholder='Ingrese un email'
-                {...register('email', {
+                {...register('mail', {
                   required: 'El email es obligatorio',
                   minLength: {
                     value: 4,
