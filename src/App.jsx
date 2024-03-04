@@ -11,6 +11,8 @@ import DetalleProducto from './components/pages/DetalleProducto';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Login from './components/pages/producto/Login';
 import { useState } from 'react';
+import RutasProtegidas from './components/routes/RutasProtegidas';
+import RutasAdmin from './components/routes/RutasAdmin';
 
 function App() {
   const usuario =
@@ -36,22 +38,11 @@ function App() {
         ></Route>
         <Route
           exact
-          path='/administrador'
-          element={<Administrador></Administrador>}
-        ></Route>
-        <Route
-          exact
-          path='/administrador/crear'
-          element={<FormularioProducto editar={false}></FormularioProducto>}
-        ></Route>
-        <Route
-          exact
-          path='/administrador/editar/:id'
+          path='/administrador/*'
           element={
-            <FormularioProducto
-              editar={true}
-              titulo='Editar producto'
-            ></FormularioProducto>
+            <RutasProtegidas>
+              <RutasAdmin></RutasAdmin>
+            </RutasProtegidas>
           }
         ></Route>
         <Route path='*' element={<Error404></Error404>}></Route>
