@@ -18,7 +18,10 @@ function App() {
   const [usuarioLogeado, setUsuarioLogeado] = useState(usuario);
   return (
     <BrowserRouter>
-      <Menu></Menu>
+      <Menu
+        usuarioLogeado={usuarioLogeado}
+        setUsuarioLogeado={setUsuarioLogeado}
+      ></Menu>
       <Routes>
         <Route exact path='/' element={<Inicio></Inicio>}></Route>
         <Route
