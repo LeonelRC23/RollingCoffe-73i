@@ -10,8 +10,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DetalleProducto from './components/pages/DetalleProducto';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Login from './components/pages/producto/Login';
+import { useState } from 'react';
 
 function App() {
+  const usuario =
+    JSON.parse(sessionStorage.getItem('usuarioRollingCoffe')) || '';
+  const [usuarioLogeado, setUsuarioLogeado] = useState(usuario);
   return (
     <BrowserRouter>
       <Menu></Menu>
@@ -22,7 +26,11 @@ function App() {
           path='/detalleProducto/:id'
           element={<DetalleProducto></DetalleProducto>}
         ></Route>
-        <Route exact path='/login' element={<Login></Login>}></Route>
+        <Route
+          exact
+          path='/login'
+          element={<Login setUsuarioLogeado={setUsuarioLogeado}></Login>}
+        ></Route>
         <Route
           exact
           path='/administrador'
