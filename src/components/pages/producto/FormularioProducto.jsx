@@ -26,8 +26,10 @@ const FormularioProducto = ({ editar, titulo }) => {
   }, []);
 
   const cargarDatosProducto = async () => {
+    console.log('formulario');
     try {
       const respuesta = await obtenerProductoAPI(id);
+      console.log(respuesta);
       if (respuesta.status === 200) {
         const productoEncontrado = await respuesta.json();
         console.log(productoEncontrado);
@@ -99,7 +101,7 @@ const FormularioProducto = ({ editar, titulo }) => {
                   'El nombre del producto debe tener como minimo 2 caracteres',
               },
               maxLength: {
-                value: 20,
+                value: 50,
                 message:
                   'El nombre del producto debe tener como maximo 20 caracteres',
               },
@@ -117,11 +119,11 @@ const FormularioProducto = ({ editar, titulo }) => {
             {...register('precio', {
               required: 'El precio es obligatorio',
               min: {
-                value: 1,
+                value: 50,
                 message: 'El producto no puede tener un precio menor a 1',
               },
               max: {
-                value: 99999,
+                value: 10000,
                 message: 'El precio no puede tener un precio mayor a 99999',
               },
             })}
