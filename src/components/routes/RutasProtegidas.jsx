@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router';
 
-const RutasProtegidas = ({ childen }) => {
+const RutasProtegidas = ({ children }) => {
   //dada alguna logica mostrar las rutas del admin
   const administrador =
     JSON.parse(sessionStorage.getItem('usuarioRollingCoffe')) || null;
@@ -9,7 +9,7 @@ const RutasProtegidas = ({ childen }) => {
     //si no es admin
     return <Navigate to={'/login'}></Navigate>;
   } else {
-    return childen;
+    return children;
   }
 };
 
