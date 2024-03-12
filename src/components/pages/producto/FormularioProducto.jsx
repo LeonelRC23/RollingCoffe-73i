@@ -30,15 +30,13 @@ const FormularioProducto = ({ editar, titulo }) => {
     try {
       const respuesta = await obtenerProductoAPI(id);
       console.log(respuesta);
-      if (respuesta.status === 200) {
-        const productoEncontrado = await respuesta.json();
-        console.log(productoEncontrado);
-        setValue('nombreProducto', productoEncontrado.nombreProducto);
-        setValue('precio', productoEncontrado.precio);
-        setValue('categoria', productoEncontrado.categoria);
-        setValue('imagen', productoEncontrado.imagen);
-        setValue('descripcionAmplia', productoEncontrado.descripcionAmplia);
-        setValue('descripcionBreve', productoEncontrado.descripcionBreve);
+      if (respuesta) {
+        setValue('nombreProducto', respuesta.nombreProducto);
+        setValue('precio', respuesta.precio);
+        setValue('categoria', respuesta.categoria);
+        setValue('imagen', respuesta.imagen);
+        setValue('descripcionAmplia', respuesta.descripcionAmplia);
+        setValue('descripcionBreve', respuesta.descripcionBreve);
       }
     } catch (error) {
       console.log(error);
