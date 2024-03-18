@@ -7,7 +7,7 @@ const CardProducto = ({ producto }) => {
       <Card className='h-100'>
         <div>
           <img
-            src={`${producto.imagen}`}
+            src={producto.imagen}
             alt='cafe'
             className='card-img-top-nueva'
           />
@@ -24,7 +24,7 @@ const CardProducto = ({ producto }) => {
         <Card.Footer className='text-end'>
           <Link
             className='btn btn-success me-2'
-            to={'/detalleProducto/' + producto.id}
+            to={'/detalleProducto/' + producto._id}
           >
             Ver más
           </Link>
